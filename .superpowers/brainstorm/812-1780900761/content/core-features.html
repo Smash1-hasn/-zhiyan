@@ -1,0 +1,78 @@
+<h2>🎯 核心功能清单（B方案）</h2>
+<p class="subtitle">按优先级分三层，确保核心做扎实</p>
+
+<div class="section">
+  <h3>🥇 P0 — 必须做（面试必问）</h3>
+  <div style="background: #e8f5e9; padding: 16px; border-radius: 8px; margin-bottom: 12px;">
+    <p><strong>1. 用户登录注册</strong><br>
+    <span style="font-size: 14px; color: #555;">用户名 + 密码（hash），JWT 鉴权。展示你懂用户体系</span></p>
+  </div>
+  <div style="background: #e8f5e9; padding: 16px; border-radius: 8px; margin-bottom: 12px;">
+    <p><strong>2. 多会话管理</strong><br>
+    <span style="font-size: 14px; color: #555;">新建/切换/删除会话，每个会话独立上下文。展示你懂对话场景设计</span></p>
+  </div>
+  <div style="background: #e8f5e9; padding: 16px; border-radius: 8px; margin-bottom: 12px;">
+    <p><strong>3. AI 对话 + 流式输出</strong><br>
+    <span style="font-size: 14px; color: #555;">用户发消息 → SSE 流式返回 → 前端打字机效果。展示你懂 Streaming</span></p>
+  </div>
+  <div style="background: #e8f5e9; padding: 16px; border-radius: 8px; margin-bottom: 12px;">
+    <p><strong>4. 多轮对话记忆</strong><br>
+    <span style="font-size: 14px; color: #555;">ChatMessageHistory + 滑动窗口，AI 记得前文。展示你懂 Memory</span></p>
+  </div>
+  <div style="background: #e8f5e9; padding: 16px; border-radius: 8px;">
+    <p><strong>5. Agent + 工具调用</strong><br>
+    <span style="font-size: 14px; color: #555;">AI 自主判断调工具：查订单、查库存、退换货规则。展示你懂 Agent</span></p>
+  </div>
+</div>
+
+<div class="section">
+  <h3>🥈 P1 — 应该做（加分项）</h3>
+  <div style="background: #e3f2fd; padding: 16px; border-radius: 8px; margin-bottom: 12px;">
+    <p><strong>6. 提示词模板切换</strong><br>
+    <span style="font-size: 14px; color: #555;">预设多套角色模板（客服默认/售后专员/技术顾问），用户可切换</span></p>
+  </div>
+  <div style="background: #e3f2fd; padding: 16px; border-radius: 8px;">
+    <p><strong>7. 工具调用可视化</strong><br>
+    <span style="font-size: 14px; color: #555;">前端展示 AI 正在调用的工具和参数（"正在查询订单 OR2024001..."）</span></p>
+  </div>
+</div>
+
+<div class="section">
+  <h3>🥉 P2 — 有时间再做（锦上添花）</h3>
+  <div style="background: #fff3e0; padding: 16px; border-radius: 8px;">
+    <p><strong>8. Docker 部署</strong> — docker-compose 一键启动<br>
+    <strong>9. 单元测试</strong> — API 测试 + Agent 测试<br>
+    <strong>10. RAG 知识库</strong> — 预留接口，时间充裕再加</p>
+  </div>
+</div>
+
+<hr>
+
+<h3>📖 面试时你怎么讲这个项目</h3>
+<div style="background: #f8f9fa; padding: 16px; border-radius: 8px; font-size: 14px;">
+<p><strong>面试官："介绍一下你的项目"</strong></p>
+<p style="color: #333;">"我独立开发了一个 AI 智能客服系统 <strong>智言</strong>。核心是基于 LangChain 搭建的 Agent 架构，支持多会话管理、多轮对话记忆、以及通过工具调用实现订单查询等业务功能。前端用的 Vue3，后端 Flask + MySQL，整套用 Docker 部署。</p>
+<p style="color: #333;">技术上主要实践了 <strong>Streaming 流式输出</strong>、<strong>ChatMessageHistory 滑动窗口记忆</strong>、<strong>Agent + Tool 的编排调度</strong>，以及提示词模板的动态管理。项目代码全部由我自己实现。"</p>
+</div>
+
+<hr>
+
+<h3>❓ 确认问题</h3>
+<p>这 7 个 P0+P1 功能，你觉得这个范围合适吗？有没有想增减的？</p>
+
+<div class="options">
+  <div class="option" data-choice="yes" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>合适，就这些</h3>
+      <p>开始做吧</p>
+    </div>
+  </div>
+  <div class="option" data-choice="modify" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>想增减一些</h3>
+      <p>我告诉你想加/减什么</p>
+    </div>
+  </div>
+</div>
