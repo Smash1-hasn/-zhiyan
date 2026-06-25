@@ -12,7 +12,7 @@ def create_app(config_name='default'):
     db.init_app(app)
     migrate.init_app(app,db)
     jwt.init_app(app)
-    CORS(app, resources={r"/api/*": {"origins": ["http://localhost:5173", "http://127.0.0.1:5173"]}}, supports_credentials=True)
+    CORS(app, resources={r"/api/*": {"origins": ["http://localhost:5173", "http://127.0.0.1:5173", "http://localhost"]}}, supports_credentials=True)
 
     import models
     

@@ -20,6 +20,7 @@ async function loadStats() {
         stats.value = res.data
     } catch (e) {
         if (e.response?.status === 401) router.push('/login')
+        console.error('加载统计数据失败', e)
     }
 }
 </script>
@@ -72,7 +73,7 @@ async function loadStats() {
                 </tbody>
             </table>
         </div>
-
+        <div v-else class="empty-state">暂无工具调用记录</div>
     </div>
 </template>
 
@@ -99,7 +100,12 @@ async function loadStats() {
     cursor: pointer;
 }
 
-.stats-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+}
 
 
 .stat-card {
@@ -151,5 +157,12 @@ async function loadStats() {
     font-weight: normal;
     font-size: 12px;
     text-transform: uppercase;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    color: #999;
+    font-size: 14px;
 }
 </style>

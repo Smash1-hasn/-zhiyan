@@ -42,7 +42,7 @@ async function loadConversations() {
         const res = await request.get('/conversations')
         conversations.value = res.data.data
         conversationGroups.value = getConversationGroups(res.data.data)
-    } catch (e) { }
+    } catch (e) { console.error('加载会话列表失败:',e)}
 }
 
 //切换会话
@@ -85,7 +85,7 @@ async function deleteConversation(convId) {
             conversationId.value = null
             messages.value = []
         }
-    } catch (e) { }
+    } catch (e) { console.error('删除会话失败',e) }
 
 }
 
@@ -94,7 +94,7 @@ async function loadMessages(convId) {
     try {
         const res = await request.get(`/conversations/${convId}/messages`)
         messages.value = res.data.data
-    } catch (e) { }
+    } catch (e) { console.error('加载历史消息失败:','e')}
 }
 
 // 检查是否登录

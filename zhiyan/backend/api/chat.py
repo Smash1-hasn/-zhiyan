@@ -66,7 +66,8 @@ def chat():
         agent = agent_map.get(intent_result.intent,GeneralAgent())
         
         #先发conversation_id
-        yield f'data:{json.dumps({"conversation_id":conversation_id})}\n\n'
+        data = json.dumps({"conversation_id":conversation_id})
+        yield f"data:{data}\n\n"
        
         #Agent流式执行
         full_response = ''
@@ -75,12 +76,16 @@ def chat():
         for event in agent.stream(messages):
             if event['type'] == 'token':
                 full_response += event['content']
-                yield f"data:{json.dumps({"token":event['content']})}\n\n"
+                data = json.dumps({"token": event['content']})
+                yield f"data:{data}\n\n"
+
             elif event['type'] == 'tool_call':
                     _tool_call_start = time.time()
                     _tool_call_name = event['tool']
                     _tool_call_args = event['args']
-                    yield f"data:{json.dumps({"type":"tool_call","tool":event['tool'],"args":event["args"]})}\n\n"
+                    data = json.dumps({"type":"tool_call","tool":event['tool'],"args":event["args"]})
+                    yield f"data:{data}\n\n"
+
             elif event['type'] == 'tool_result':
                 log = ToolCallLog(
                     conversation_id = conversation_id,
@@ -94,7 +99,8 @@ def chat():
                 )
                 db.session.add(log)
                 db.session.commit()
-                yield f"data:{json.dumps({"type":"tool_result","result":event['content']})}\n\n"
+                data = json.dumps({"type":"tool_result","result":event['content']})
+                yield f"data:{data}\n\n"
             elif event['type'] == 'done':
                  #检查是否需要确认
                 if event.get("has_refund"):
@@ -107,7 +113,8 @@ def chat():
                     )
                     db.session.add(pending)
                     db.session.commit()
-                    yield f"data:{json.dumps({'type':'requires_confirmation','action_id':pending.id,'data':event['refund_data']})}\n\n"
+                    data = json.dumps({'type':'requires_confirmation','action_id':pending.id,'data':event['refund_data']})
+                    yield f"data:{data}\n\n"
                       
                 # AI回复完整后存数据库
                 db.session.add(Message(
@@ -116,8 +123,8 @@ def chat():
                     content = full_response
                 ))
                 db.session.commit()
-                yield f"data:{json.dumps({'done':True})}\n\n"
-        
+                data = json.dumps({'done':True})
+                yield f"data:{data}\n\n"
         
       
         
