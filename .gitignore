@@ -20,7 +20,7 @@ frontend/.vite/
 .vscode/
 .idea/
 
-# OS
+# 操作系统
 .DS_Store
 Thumbs.db
 
@@ -29,4 +29,4 @@ docker-data/
 
 # 迁移文件（保留 migrations/versions/ 但忽略缓存）
 migrations/versions/*.pyc
-.superpowers/
+
